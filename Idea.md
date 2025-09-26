@@ -39,7 +39,7 @@ A mobile application that allows users to search for restaurants, view their men
 **7. Technology Stack**
 * React Native (with expo)
 * google firestore
-* tailwind css
+* css
 * form management
 * navigation (expo router)
 
