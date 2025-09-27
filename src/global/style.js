@@ -1,0 +1,33 @@
+module.exports={
+    colors:{
+        col1:'white',
+        col2:'black',
+        col3:'#FF6347',
+        col4:'#ff7f50',
+        text1:'#5F5F5F',
+        text2:'#828282',
+    },
+    titles:{
+        title1:30,
+        btntxt:20,
+    },
+    btn1:{
+        width:'80%',
+        height:50,
+        backgroundColor:'black',
+        borderRadius:10,
+        alignItems:'center',
+        justifyContent:'center',
+        color:'white'
+    },
+    hr80:{
+        width:'80%',
+        borderBottomWidth:1,
+        borderBottomColor:'#828282 ',
+        marginVertical:20,
+    },
+    background:{
+        bg:'#ff7f50'
+    }
+
+}

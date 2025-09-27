@@ -1,7 +1,7 @@
 ## **Project Idea** 
 
 **1. Project Title**
-*(DineSmart: Restaurant Table booking App)*
+*(DineSmart: Food  delivery App)*
 
 ---
 
