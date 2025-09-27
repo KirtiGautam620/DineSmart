@@ -2,7 +2,7 @@ import React from 'react'
 import {View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native'
 import logo from '../../../assets/logo.png'
 import {colors,hr80,background} from '../../global/style'
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation }) => {
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Welcome To DineSmart</Text>
@@ -14,11 +14,11 @@ const WelcomeScreen = () => {
         <Text style={styles.text}>Find the best Food around you at lowest price.</Text>
         <View  style={hr80} />
         <View style={styles.btnout}>
-            <TouchableOpacity >
+            <TouchableOpacity onPress={()=>navigation.navigate('signup')} >
                 <Text style={styles.btn}>Sign up</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={styles.btn}>Login In</Text>
+                <Text style={styles.btn} onPress={()=>navigation.navigate('login')}>Login In</Text>
             </TouchableOpacity>
         </View>
     </View>

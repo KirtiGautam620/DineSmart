@@ -1,10 +1,13 @@
 import React,{useState} from 'react'
 import {StyleSheet, View,Text,TextInput, TouchableOpacity} from 'react-native'
-import { titles ,colors,background,btn1 } from '../../global/style'
+import { titles ,colors,background,btn1, hr80 } from '../../global/style'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Foundation from '@expo/vector-icons/Foundation';
-const LoginScreen = () => {
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Entypo from '@expo/vector-icons/Entypo';
+
+const LoginScreen = ({navigation}) => {
     const [emailfocus,setEmailfocus]=useState(false)
     const [passwordfocus,setPasswordfocus]=useState(false)
     const [showpassword,setShowpassword]=useState(false)
@@ -53,6 +56,22 @@ const LoginScreen = () => {
       <Text style={styles.or} >OR</Text>
       <Text style={styles.txt}>Sign In With</Text>
 
+      <View style={styles.gi}>
+        <TouchableOpacity>
+             <View style={styles.gicon}>
+             <AntDesign name="google" size={26} color="#4285F4" />
+             </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+             <View style={styles.gicon}>
+             <Entypo name="instagram" size={26} color="#E1306C"/>
+             </View>
+        </TouchableOpacity>
+      </View>
+      <View style={hr80}></View>
+      <Text>Don't have an account?
+        <Text style={styles.signup} onPress={()=>navigation.navigate('signup')}>  Sign Up</Text>
+      </Text>
     </View>
   )
 }
@@ -87,6 +106,32 @@ const styles=StyleSheet.create({
         color:colors.text1,
         marginTop:20,
         marginBottom:10
+    },
+    or:{
+        color:colors.col2,
+        fontWeight:'bold',
+        marginVertical:10,
+    },
+    txt:{
+        color:colors.text1,
+        marginVertical:10,
+        fontSize:22,
+    },
+    gi:{
+        flexDirection:'row',
+    },
+    gicon:{
+        backgroundColor:'#FFFFFF',
+        width:50,
+        margin:10,
+        borderRadius:10,
+        padding:10,
+        alignItems:'center',
+        shadowOpacity:0.4,
+        shadowRadius:0.5,
+    },
+    signup:{
+        color:colors.text1, 
     }
 })
 export default LoginScreen
