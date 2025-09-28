@@ -13,6 +13,9 @@ const OfferSlider = () => {
           <View style={styles.slide}>
              <Image source={require('../../assets/offer3.jpg')} style={styles.img}  /> 
           </View> 
+          <View style={styles.slide}>
+             <Image source={require('../../assets/offer5.jpeg')} style={styles.img}  /> 
+          </View>
         </Swiper>
       </View>
     </View>
