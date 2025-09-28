@@ -18,7 +18,7 @@ const WelcomeScreen = ({navigation }) => {
                 <Text style={styles.btn}>Sign up</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={styles.btn} onPress={()=>navigation.navigate('login')}>Login In</Text>
+                <Text style={styles.btn} onPress={()=>navigation.navigate('login')}>Sign In</Text>
             </TouchableOpacity>
         </View>
     </View>

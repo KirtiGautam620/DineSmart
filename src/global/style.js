@@ -6,6 +6,7 @@ module.exports={
         col4:'#ff7f50',
         text1:'#5F5F5F',
         text2:'#828282',
+        text3:'black'
     },
     titles:{
         title1:30,

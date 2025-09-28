@@ -48,7 +48,7 @@ const LoginScreen = ({navigation}) => {
         onPress={()=>setShowpassword(!showpassword)}
         />
       </View>
-      <TouchableOpacity style={btn1}>
+      <TouchableOpacity style={btn1} onPress={()=>navigation.navigate('home')}>
         <Text style={{color:colors.col1,fontSize:titles.btntxt,fontWeight:'bold'}}>Sign In</Text>
       </TouchableOpacity>
 
@@ -75,7 +75,7 @@ const LoginScreen = ({navigation}) => {
     </View>
   )
 }
- 
+  
 const styles=StyleSheet.create({
     container:{
         flex:1,
