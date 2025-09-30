@@ -1,7 +1,7 @@
 import React from 'react'
-import {View,Text} from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import AuthNavigation from './screens/LoginSignUpScreens/AuthNavigation'
+import UserProfile from './screens/UserProfile'
 const RootNavigation = () => {
   return (
    <NavigationContainer>
