@@ -1,20 +1,25 @@
-import { View, Text ,StyleSheet,ScrollView,SafeAreaView} from 'react-native'
+import { View, Text ,StyleSheet,ScrollView, TouchableOpacity} from 'react-native'
 import React from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'; 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import {colors} from '../global/style'
-const HomeHeadNav = () => {
+import { SafeAreaView } from 'react-native-safe-area-context';
+const HomeHeadNav = ({navigation }) => {
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView>
+    <View style={styles.safe}>
     <View style={styles.container}>
       <FontAwesome name="navicon" size={24} color="black" style={styles.myicon} />
       <View style={styles.containerin}>
         <Text style={styles.mytext}>Dine-Smart</Text>
         <Ionicons name="fast-food" size={24} color="black" style={styles.myicon}  />
       </View>
+      <TouchableOpacity onPress={()=>navigation.navigate('userprofile')}>
       <FontAwesome6 name="circle-user" size={24} color="black" style={styles.myicon} />
+      </TouchableOpacity>
     </View>
+    </View> 
     </SafeAreaView>
   )
 }
@@ -29,7 +34,7 @@ const styles=StyleSheet.create({
     flexDirection:'row',
     width:"100%",
     justifyContent:'space-between',
-    padding:18 ,
+    padding:18,
     backgroundColor:colors.col1,
     alignItems:'center',
     shadowOpacity:0.23,
@@ -48,7 +53,7 @@ const styles=StyleSheet.create({
   mytext:{
     fontSize:20,
     color:colors.col3,
-  }
+  } 
 
 })
  

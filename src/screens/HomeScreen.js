@@ -8,7 +8,7 @@ import {colors} from '../global/style'
 import {foods,categories} from '../data/dummy'
 import Entypo from '@expo/vector-icons/Entypo';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const [foodData, setFoodData] =useState([])
   const [categoryData, setCategoryData] = useState("Today's Special");
 
@@ -28,7 +28,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
         <StatusBar/>  
-        <HomeHeadNav/>
+        <HomeHeadNav  navigation={navigation} />
         <View style={styles.searchbox}>
         <Feather name="search" size={24} color="black" style={styles.searchicon}/>
         <TextInput placeholder='Search' style={styles.input} 
