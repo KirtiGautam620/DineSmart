@@ -1,4 +1,4 @@
-import { View, Text ,StatusBar,TextInput,ScrollView,StyleSheet, TouchableOpacity,Image} from 'react-native'
+import { View, Text ,StatusBar,TextInput,ScrollView,StyleSheet, TouchableOpacity,Image,FlatList} from 'react-native'
 import React,{useState,useEffect} from 'react'
 import HomeHeadNav from '../components/HomeHeadNav'
 import Categories from '../components/Categories'
@@ -6,10 +6,15 @@ import OfferSlider from '../components/OfferSlider'
 import Feather from '@expo/vector-icons/Feather';
 import {colors} from '../global/style'
 import {foods,categories} from '../data/dummy'
+import Entypo from '@expo/vector-icons/Entypo';
+
 const HomeScreen = () => {
   const [foodData, setFoodData] =useState([])
   const [categoryData, setCategoryData] = useState("Today's Special");
 
+  const [search,setSearch] = useState('')
+
+  // console.log(search) 
   useEffect(() => {
     if(categoryData==="Today's Special"){
       setFoodData(foods)
@@ -17,16 +22,37 @@ const HomeScreen = () => {
       setFoodData(foods.filter((item)=>item.category===categoryData))
     }
   },[categoryData])
-  console.log("category",categoryData)
-  console.log("food",foods.filter((item)=>item.category===categoryData))
+  // console.log("category",categoryData)
+  // console.log("food",foods.filter((item)=>item.category===categoryData))
+
   return (
     <View style={styles.container}>
         <StatusBar/>  
         <HomeHeadNav/>
         <View style={styles.searchbox}>
         <Feather name="search" size={24} color="black" style={styles.searchicon}/>
-        <TextInput placeholder='Search' style={styles.input} />
+        <TextInput placeholder='Search' style={styles.input} 
+        onChangeText={(text)=>{setSearch(text)} } 
+        />
         </View> 
+        {search!= '' && 
+        <View style={styles.searchres}>
+          {/* <Text>You typed something</Text> */}
+           <FlatList
+           style={styles.searchresin}
+           data={foodData}
+           renderItem={({item})=>{
+            if(item.name.toLowerCase().includes(search.toLowerCase())){
+               return (
+                <View style={styles.searchresbox}>
+                  <Entypo name="minus" size={24} color={colors.text1} />
+                  <Text style={styles.searchtext }>{item.name}</Text>
+                </View> 
+               )
+            }
+           }}
+           />
+        </View>}
         <Categories/>
         <OfferSlider/> 
         <ScrollView style={{flex:1,width:'100%'}}>
@@ -103,7 +129,27 @@ const styles = StyleSheet.create({
   },
   selectedCategory: {
     marginLeft:10,
-    backgroundColor: colors.col4,
+    backgroundColor: '#a0522d',
   },
+  searchres:{
+    width:'100%',
+    marginHorizontal:30,
+    backgroundColor:colors.col1,
+  },
+  searchresin:{
+    width:"100%"
+  },
+  searchresbox:{
+    width:'100%',
+    flexDirection:'row',
+    alignItems:'center',
+    padding:5
+  },
+  searchtext:{
+    marginLeft:10,
+    fontSize:18,
+    color:colors.text1
+  }
+
 }) 
 export default HomeScreen
