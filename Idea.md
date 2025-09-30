@@ -10,23 +10,27 @@
 ---
 
 **3. Project Description**
-Manually calling restaurants for table reservation is a tedious task. Dinesmart is a mobile app that helps users to book a table in a restaurant. This project aims to solve these problems by providing a modern, efficient digital platform for restaurant discovery and booking.
+Ordering food from multiple restaurants can be time-consuming and inconvenient.
+DineSmart is a mobile application that allows users to browse restaurants, view their menus, filter foods by type, category, or meal type, and place orders digitally.
+The project aims to make food ordering seamless, efficient, and user-friendly.
 
 ---
 
 **4. Proposed Solution / Idea**
-A mobile application that allows users to search for restaurants, view their menus, and make table reservations. The app will also provide features such as restaurant reviews, ratings, and recommendations based on user preferences.
+* Browse restaurants and their menus
 
+* Filter foods by type (Veg/Non-Veg), category, or meal type
+
+* Place food orders online
+
+* View restaurant ratings and reviews
 ---
 
 **5. Project Scope**
-* Real-time Table Booking (users can book a table at a restaurant at a specific time)
-* Dynamic Content (all restaurants information will be updated in real-time)
-* Secure Authentication (app includes signin and signup functionality)
-* Custom UI Components (Implements a native calendar)
+* Restaurant & Food Management: CRUD operations for restaurants and menu items
+* User signup/login functionality
+* Intuitive UI/UX: Smooth scrolling, responsive layout, and modern mobile design
 * Booking History (users can view past and upcoming reservations)
-* Intuitive UI/UX (smooth and easy scrolling)
-
 ---
 
 **6. Target Users / Audience**
@@ -37,11 +41,26 @@ A mobile application that allows users to search for restaurants, view their men
 ---
 
 **7. Technology Stack**
-* React Native (with expo)
-* google firestore
-* css
-* form management
-* navigation (expo router)
+Frontend:
+
+* React Native (with Expo)
+* styling with css
+* Navigation: Expo Router
+* Form management for inputs and validations
+
+Backend:
+
+* Node.js + Express.js
+
+* Prisma ORM
+
+* MySQL database
+
+Additional Tools:
+
+* CORS, body-parser for API handling
+
+* ThunderClient for testing APIs
 
 ---
 
