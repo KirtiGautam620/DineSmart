@@ -35,6 +35,10 @@ return (
         <MaterialCommunityIcons name="tea" size={24} color="black" style={styles.myicon}/>
         <Text>Tea</Text>
         </View>
+        <View style={styles.box}>
+        <MaterialIcons name="icecream" size={24} color="black" style={styles.myicon}/>
+        <Text>Ice Cream</Text>
+        </View>
     </ScrollView>
     </View>
     )

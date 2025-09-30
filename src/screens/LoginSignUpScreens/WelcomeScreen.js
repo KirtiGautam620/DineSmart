@@ -21,7 +21,7 @@ const WelcomeScreen = ({navigation }) => {
                 <Text style={styles.btn} onPress={()=>navigation.navigate('login')}>Sign In</Text>
             </TouchableOpacity>
         </View>
-    </View>
+    </View> 
   )
 }
 

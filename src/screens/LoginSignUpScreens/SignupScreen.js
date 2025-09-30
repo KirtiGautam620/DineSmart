@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {StyleSheet, View,Text,TextInput, TouchableOpacity} from 'react-native'
+import {StyleSheet, View,Text,TextInput, TouchableOpacity,ScrollView} from 'react-native'
 import { titles ,colors,background,btn1, hr80 } from '../../global/style'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -15,6 +15,7 @@ const  SignupScreen= ({navigation}) => {
     const [showcpassword,setShowcpassword]=useState(false)
     const [namefocus,setNamefocus]=useState(false)
   return (
+    
     <View style={styles.container}> 
       <Text style={styles.head1}>Sign Up </Text> 
 
@@ -123,6 +124,7 @@ const  SignupScreen= ({navigation}) => {
         <Text style={styles.signup} onPress={()=>navigation.navigate('login')}>  Sign In</Text>
       </Text>
     </View>
+   
   )
 }
  
