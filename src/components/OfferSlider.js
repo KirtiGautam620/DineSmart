@@ -7,6 +7,9 @@ const OfferSlider = () => {
     <View>
       <View style={styles.offerslide}>
         <Swiper autoplay={true} autoplayTimeout={4} >
+        <View style={styles.slide}>
+             <Image source={require('../../assets/offer4.png')} style={styles.img}  /> 
+          </View>
           <View style={styles.slide}>
              <Image source={require('../../assets/offer2.png')} style={styles.img}  /> 
           </View>

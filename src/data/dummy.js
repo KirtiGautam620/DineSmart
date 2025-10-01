@@ -153,6 +153,16 @@ export const foods = [
     imageUrl:"https://myurbantreats.com/wp-content/uploads/2022/01/Donuts-with-chocolate-glaze-500x500.jpg",
     restaurant: "Sweet Treats",
   },
+  {
+    id: 16,
+    name: "Noodles",
+    price: 4.99,
+    type: "Veg",
+    mealType: "Snacks",
+    category: "Snacks",
+    imageUrl:"https://images.getrecipekit.com/20241008094433-blog-20templates-20-3.webp?aspect_ratio=16:9&quality=90&",
+    restaurant: "Spice Villa",
+  },
 ];
 
 export const restaurants = [

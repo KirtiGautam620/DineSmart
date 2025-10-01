@@ -1,6 +1,6 @@
 import { View, Text ,StyleSheet, TouchableOpacity,Button} from 'react-native'
 import React,{useEffect,useState} from 'react'
-import {colors} from '../global/style'
+import {colors,btn1} from '../global/style'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Avatar } from 'react-native-paper'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -12,8 +12,8 @@ const UserProfile = ({navigation}) => {
         const Dummy=async ()=>{
             const DummyUser={
                 name:"Kirti Gautam",
-                email:"kirti@abc.com",
-                phone:"+91765754343",
+                email:"kirti@abcddd.com",
+                phone:"+917657543432",
                 avatar:require("../../assets/avt.jpeg")
             }
             await AsyncStorage.setItem('@user_profile',JSON.stringify(DummyUser))
@@ -48,12 +48,17 @@ const UserProfile = ({navigation}) => {
             <Text style={styles.name}>Name: {user.name}</Text>
             <Text style={styles.email}>Email: {user.email}</Text>
             <Text style={styles.phone}>Phone: {user.phone}</Text>
-            <Button title="Logout" onPress={handle} />
+            <TouchableOpacity onPress={handle} style={styles.lbtn}>
+                <Text style={styles.btntxt}>Log Out</Text>
+            </TouchableOpacity>
             </>
         ):(
             <>
-            <Avatar.Image size={200} />
-            <Text>No Profile Found. Please Log In</Text>
+            <Avatar.Image size={200} style={{backgroundColor:"#ffa07a"}}/>
+            <Text style={styles.name}>No Profile Found. Please Log In</Text>
+            <TouchableOpacity title="Logout" style={styles.lbtn}>
+                <Text style={styles.btntxt} onPress={()=>navigation.navigate('login')}>Log In</Text>
+            </TouchableOpacity>
             </>   
         )
         }
@@ -75,15 +80,16 @@ const styles=StyleSheet.create({
         marginBottom:300
     },
     name:{
+        // backgroundColor:'red',
         fontSize:25,
         fontWeight:'bold',
-        color:colors.text1,
-        marginTop:15,
+        color:colors.text3,
+        marginTop:35,
     },
     email:{
         fontSize:20 ,
         color:colors.col2,
-        marginTop:5
+        marginTop:10
     },
     phone:{
         fontSize:20 ,
@@ -96,5 +102,15 @@ const styles=StyleSheet.create({
         left:20,
         zIndex:10,
         padding:8,
+    },
+    lbtn:{
+        marginTop:30,
+        backgroundColor:"#ffa07a",
+        padding:15,
+        borderRadius:10,
+    },
+    btntxt:{
+        fontWeight:"bold"
     }
+
 })
