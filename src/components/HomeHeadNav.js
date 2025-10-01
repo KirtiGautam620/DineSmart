@@ -12,7 +12,7 @@ const HomeHeadNav = ({navigation }) => {
     <SafeAreaView>
     <View style={styles.safe}>
     <View style={styles.container}>
-      <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+      <TouchableOpacity>
       <FontAwesome name="navicon" size={24} color="black" style={styles.myicon} />
       </TouchableOpacity>
       <View style={styles.containerin}>

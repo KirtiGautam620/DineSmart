@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {StyleSheet, View,Text,TextInput, TouchableOpacity,ScrollView} from 'react-native'
 import { titles ,colors,background,btn1, hr80 } from '../../global/style'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -6,7 +6,8 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Foundation from '@expo/vector-icons/Foundation';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
-
+import { Linking ,Alert} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const  SignupScreen= ({navigation}) => {
     const [emailfocus,setEmailfocus]=useState(false)
     const [passwordfocus,setPasswordfocus]=useState(false)
@@ -14,6 +15,26 @@ const  SignupScreen= ({navigation}) => {
     const [cpasswordfocus,setcPasswordfocus]=useState(false)
     const [showcpassword,setShowcpassword]=useState(false)
     const [namefocus,setNamefocus]=useState(false)
+
+    
+    const handlegit=()=>{
+      Linking.openURL("http://localhost:3000/auth/github")
+    }
+    useEffect(()=>{
+      const handleLink=async ()=>{
+        // const url=event.url
+        // const t=url.split("token=")[1]
+        // if(t){
+        const t='123456'
+          await AsyncStorage.setItem('@user_token', t);
+          navigation.navigate("home")
+        // }
+      }
+      const subs= Linking.addEventListener("url",handleLink)
+      return ()=>{
+        subs.remove()
+      }
+    },[])
   return (
     
     <View style={styles.container}> 
@@ -108,7 +129,7 @@ const  SignupScreen= ({navigation}) => {
       <Text style={styles.txt}>Sign In With</Text>
 
       <View style={styles.gi}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlegit}>
              <View style={styles.gicon}>
              <AntDesign name="google" size={26} color="#4285F4" />
              </View>

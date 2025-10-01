@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {StyleSheet, View,Text,TextInput, TouchableOpacity} from 'react-native'
 import { titles ,colors,background,btn1, hr80 } from '../../global/style'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -6,11 +6,28 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Foundation from '@expo/vector-icons/Foundation';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
-
+import {Linking,Alert} from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const LoginScreen = ({navigation}) => {
     const [emailfocus,setEmailfocus]=useState(false)
     const [passwordfocus,setPasswordfocus]=useState(false)
     const [showpassword,setShowpassword]=useState(false)
+
+    const handlegit=()=>{
+      Linking.openURL("http://localhost:3000/auth/github")
+    }
+    useEffect(()=>{
+      const handleLink=async ()=>{
+        const t='123456'
+        await AsyncStorage.setItem('@user_token',t)
+        Alert.alert("Success","You have successfully logged in")
+        navigation.navigate("home")
+      }
+      const subd =Linking.addEventListener("url",handleLink)
+      return ()=>{
+      subd.remove()
+      }
+    },[])
   return (
     <View style={styles.container}> 
       <Text style={styles.head1}>Sign In </Text>
@@ -57,7 +74,7 @@ const LoginScreen = ({navigation}) => {
       <Text style={styles.txt}>Sign In With</Text>
 
       <View style={styles.gi}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlegit}>
              <View style={styles.gicon}>
              <AntDesign name="google" size={26} color="#4285F4" />
              </View>
