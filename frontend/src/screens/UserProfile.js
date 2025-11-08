@@ -100,8 +100,8 @@ const styles=StyleSheet.create({
     },
     backbtn:{
         position:"absolute",
-        top:60,
-        left:20,
+        top:hd(2),
+        left:hd(1),
         zIndex:10,
         padding:8,
     },

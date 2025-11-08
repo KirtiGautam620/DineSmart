@@ -19,7 +19,7 @@ const  SignupScreen= ({navigation}) => {
 
     
     const handlegit=()=>{
-      Linking.openURL("http://localhost:3000/auth/github")
+      Linking.openURL("https://catherina-pulmonary-cadence.ngrok-free.dev/auth/google/callback")
     }
     useEffect(()=>{
       const handleLink=async ()=>{
