@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Avatar } from 'react-native-paper'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {wd,hd} from "../utils/responsive"
 const UserProfile = ({navigation}) => {
     const [user,setUser]=useState(null)
 
@@ -55,7 +56,8 @@ const UserProfile = ({navigation}) => {
         ):(
             <>
             <Avatar.Image size={200} style={{backgroundColor:"#ffa07a"}}/>
-            <Text style={styles.name}>No Profile Found. Please Log In</Text>
+            <Text style={styles.name}>No Profile Found.</Text>
+            <Text> Please Log In</Text>
             <TouchableOpacity title="Logout" style={styles.lbtn}>
                 <Text style={styles.btntxt} onPress={()=>navigation.navigate('login')}>Log In</Text>
             </TouchableOpacity>
@@ -77,11 +79,11 @@ const styles=StyleSheet.create({
     },
     head:{
         alignItems:'center',
-        marginBottom:300
+        marginBottom:wd(3)
     },
     name:{
         // backgroundColor:'red',
-        fontSize:25,
+        fontSize:wd(8),
         fontWeight:'bold',
         color:colors.text3,
         marginTop:35,

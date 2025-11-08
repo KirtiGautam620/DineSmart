@@ -2,12 +2,15 @@ import React from 'react'
 import {View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native'
 import logo from '../../../assets/logo.png'
 import {colors,hr80,background} from '../../global/style'
+import {wd,hd} from "../../utils/responsive"
 const WelcomeScreen = ({navigation }) => {
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Welcome To DineSmart</Text>
         <View >
-            <Image source={logo}/>
+            <Image source={logo} style={{width:wd(70),height:hd(40), resizeMode:'contain',marginVertical:hd(1),
+            marginTop:hd(3)
+            }}/>
         </View>
 
         <View style={hr80} />
@@ -31,14 +34,14 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         backgroundColor:background.bg,
-        width:"100%"
+        paddingHorizontal:wd(4),
     },
     title:{
-        fontSize:50,
+        fontSize:wd(15),
         color:colors.col2,
         textAlign:'center',
         fontWeight:'bold',
-        marginVertical:10, 
+        zIndex:10 
     },
     // logo:{
     //     backgroundColor:'#fff',

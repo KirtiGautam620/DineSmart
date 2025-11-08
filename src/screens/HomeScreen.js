@@ -7,7 +7,7 @@ import Feather from '@expo/vector-icons/Feather';
 import {colors} from '../global/style'
 import {foods,categories} from '../data/dummy'
 import Entypo from '@expo/vector-icons/Entypo';
-
+import {wd,hd} from "../utils/responsive"
 const HomeScreen = ({navigation}) => {
   const [foodData, setFoodData] =useState([])
   const [categoryData, setCategoryData] = useState("Today's Special");
@@ -27,6 +27,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      
         <StatusBar/>  
         <HomeHeadNav  navigation={navigation} />
         <View style={styles.searchbox}>
@@ -74,7 +75,7 @@ const HomeScreen = ({navigation}) => {
 <ScrollView style={{ width: '90%' }}>
   {foodData.map(food => (
     <View key={food.id} style={styles.foodItem}>
-     <Image source={{ uri: food.imageUrl }} style={{ width: '100%', height: 150, borderRadius: 10, marginTop: 5 }} />
+     <Image source={{ uri: food.imageUrl }} style={{ width: '100%', height:hd(25), borderRadius: 10, marginBottom:hd(1) }} />
       <Text style={{ fontWeight: 'bold', fontSize: 20}}>{food.name}</Text>
       <Text>${food.price}</Text>
       <Text>{food.type} | {food.mealType}</Text>
@@ -99,36 +100,36 @@ const styles = StyleSheet.create({
     backgroundColor:colors.col1,
     borderRadius:30,
     alignItems:'center',
-    padding:10,
-    margin:20,
+    padding:hd(1),
+    margin:hd(2),
     shadowOffset:{width:0,height:2},
     shadowOpacity:0.5,
     shadowRadius:4 ,
   },
   input:{
     width:'90%',
-    fontSize:20,
+    fontSize:wd(5),
     marginLeft:11,
   },
   searchicon:{
     color:colors.col2, 
   },
   foodItem:{
-    padding:15,
-    marginVertical:5,
+    padding:hd(2),
+    marginVertical:hd(1),
     backgroundColor:'#ffa07a',
     borderRadius:10,
     marginLeft:30,
   },
   categoryButton: {
-    marginLeft:10,
-    padding: 10,
-    marginHorizontal: 5,
+    marginLeft:hd(1),
+    padding: hd(1.7),
+    marginHorizontal: wd(1),
     borderRadius: 20,
     backgroundColor: colors.col1,
   },
   selectedCategory: {
-    marginLeft:10,
+    marginLeft:hd(1),
     backgroundColor: '#a0522d',
   },
   searchres:{

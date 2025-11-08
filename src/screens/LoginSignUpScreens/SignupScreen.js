@@ -8,6 +8,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
 import { Linking ,Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {hd,wd} from "../../utils/responsive"
 const  SignupScreen= ({navigation}) => {
     const [emailfocus,setEmailfocus]=useState(false)
     const [passwordfocus,setPasswordfocus]=useState(false)
@@ -38,6 +39,7 @@ const  SignupScreen= ({navigation}) => {
   return (
     
     <View style={styles.container}> 
+    <ScrollView contentContainerStyle={styles.scroll} showsHorizontalScrollIndicator={false}>
       <Text style={styles.head1}>Sign Up </Text> 
 
       <View style={styles.inputout}>
@@ -140,10 +142,11 @@ const  SignupScreen= ({navigation}) => {
              </View>
         </TouchableOpacity>
       </View>
-      <View style={hr80}></View>
+      <View style={{hr80,marginTop:hd(1)}}></View>
       <Text>Already have an account?
         <Text style={styles.signup} onPress={()=>navigation.navigate('login')}>  Sign In</Text>
       </Text>
+      </ScrollView>
     </View>
    
   )
@@ -153,41 +156,46 @@ const styles=StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:background.bg,
-        alignItems:'center',
-        justifyContent:'center',
-        width:'100%', 
+        width:wd(100), 
+    },
+    scroll:{
+      alignItems:'center',
+      paddingVertical:hd(5),
+      paddingHorizontal:wd(5),
     },
     head1:{
+      marginTop:hd(5),
+      margin:hd(1),
         fontSize:titles.title1,
         color:colors.col2, 
     },
     inputout:{
         flexDirection:'row',
         width:'80%',
-        marginVertical:20,
+        marginVertical:hd(1),
         backgroundColor:colors.col1,
         borderRadius:10, 
-        paddingHorizontal:10,
-        paddingVertical:10,
+        paddingHorizontal:hd(1),
+        paddingVertical:hd(1),
     },
     input:{
         fontSize:18,
-        marginLeft:10,
+        marginLeft:hd(1),
         flex:1, 
     },
     forgot:{
         color:colors.text1,
-        marginTop:20,
-        marginBottom:10
+        marginTop:hd(2),
+        marginBottom:hd(1)
     },
     or:{
         color:colors.col2,
         fontWeight:'bold',
-        marginVertical:10,
+        marginVertical:hd(1),
     },
     txt:{
         color:colors.text1,
-        marginVertical:10,
+        marginVertical:hd(1),
         fontSize:22,
     },
     gi:{
@@ -195,22 +203,24 @@ const styles=StyleSheet.create({
     },
     gicon:{
         backgroundColor:'#FFFFFF',
-        width:50,
-        margin:10,
-        borderRadius:10,
-        padding:10,
+        width:hd(10),
+        margin:hd(1),
+        borderRadius:hd(1.5),
+        padding:hd(2),
         alignItems:'center',
         shadowOpacity:0.4,
         shadowRadius:0.5,
     },
     signup:{
         color:colors.text1, 
+        marginTop:hd(4)
     },
     address:{
       fontSize:17,
       color:colors.text1,
       textAlign:'center',
-      fontWeight:'bold'
+      fontWeight:'bold',
+      marginBottom:hd(1),
     },
     
 
