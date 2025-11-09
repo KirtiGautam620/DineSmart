@@ -39,20 +39,26 @@ app.delete("/api/favorites/:userId/:recipeId",async(req,res)=>{
         res.status(200).json({del})
     }catch(err){
         console.log(err)
+        res.status(500).json({error:"server error"})
+
     }
 
 })
 app.get("/api/favorites/:userId",async (req,res)=>{
+    console.log("Request received:", req.params.userId);
     try{
         const {userId}=req.params
         const user=await prisma.favorites.findMany({
             where:{
             userId:parseInt(userId)}
         })
+        console.log("Fetched favorites:", user.length);
         res.status(200).json({user})
     }
     catch(err){
         console.log(err)
+        res.status(500).json({error:"server error"})
+
     }
 })
 
