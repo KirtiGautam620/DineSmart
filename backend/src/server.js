@@ -1,5 +1,7 @@
 const express=require('express')
 const dotenv=require("dotenv")
+const cron=require("./cron")
+const axios=require("axios")
 const app=express()
 const { PrismaClient } = require('@prisma/client')
 const prisma=new PrismaClient()
