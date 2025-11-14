@@ -1,11 +1,12 @@
 import React from 'react'
 import {View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import logo from '../../../assets/logo.png'
 import {colors,hr80,background} from '../../global/style'
 import {wd,hd} from "../../utils/responsive"
 const WelcomeScreen = ({navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
         <Text style={styles.title}>Welcome To DineSmart</Text>
         <View >
             <Image source={logo} style={{width:wd(70),height:hd(40), resizeMode:'contain',marginVertical:hd(1),
@@ -24,7 +25,7 @@ const WelcomeScreen = ({navigation }) => {
                 <Text style={styles.btn} onPress={()=>navigation.navigate('login')}>Sign In</Text>
             </TouchableOpacity>
         </View>
-    </View> 
+    </SafeAreaView> 
   )
 }
 

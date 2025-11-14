@@ -12,7 +12,7 @@ const LoginScreen = ({navigation}) => {
     const [emailfocus,setEmailfocus]=useState(false)
     const [passwordfocus,setPasswordfocus]=useState(false)
     const [showpassword,setShowpassword]=useState(false)
-
+    const [err,setErr]=useState(false)
     const handlegit=()=>{
       Linking.openURL("http://localhost:3000/auth/github")
     }

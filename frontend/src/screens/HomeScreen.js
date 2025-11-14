@@ -1,5 +1,6 @@
 import { View, Text ,StatusBar,TextInput,ScrollView,StyleSheet, TouchableOpacity,Image,FlatList} from 'react-native'
 import React,{useState,useEffect} from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import HomeHeadNav from '../components/HomeHeadNav'
 import Categories from '../components/Categories'
 import OfferSlider from '../components/OfferSlider'
@@ -26,7 +27,7 @@ const HomeScreen = ({navigation}) => {
   // console.log("food",foods.filter((item)=>item.category===categoryData))
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       
         <StatusBar/>  
         <HomeHeadNav  navigation={navigation} />
@@ -83,7 +84,7 @@ const HomeScreen = ({navigation}) => {
   ))}
 </ScrollView>
 </ScrollView>
-    </View>
+    </SafeAreaView>
   )  
 } 
   
