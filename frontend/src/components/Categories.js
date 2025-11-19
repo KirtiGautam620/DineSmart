@@ -55,7 +55,7 @@ const styles=StyleSheet.create({
     },
     head:{
         color:colors.col2,
-        fontSize:24,
+        fontSize:23,
         fontWeight:'bold',
         alignSelf:'center',
         margin:10,
@@ -65,8 +65,8 @@ const styles=StyleSheet.create({
     },
     box:{
         backgroundColor:colors.col1,
-        margin:10,
-        padding:10,
+        margin:5,
+        padding:5,
         shadowOffset:{width:0,height:2},
         shadowOpacity:0.25,
         borderRadius:10,

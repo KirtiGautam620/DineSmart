@@ -34,7 +34,7 @@ export default OfferSlider
 const styles = StyleSheet.create({
   offerslide:{
     width:'100%',
-    height:200,
+    height:140,
     backgroundColor:colors.col3,
     paddingHorizontal:10,
     justifyContent:'center',
@@ -42,8 +42,10 @@ const styles = StyleSheet.create({
     marginVertical:10,
   },
   slide:{
-    width:'100%',
-    height:200,
+    flex:1,
+    justifyContent:'center',
+    // width:'100%',
+    // height:200,
     backgroundColor:colors.col3,
     justifyContent:'center',
     alignContent:'center',

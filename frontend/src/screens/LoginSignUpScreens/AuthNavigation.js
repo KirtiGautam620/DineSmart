@@ -7,6 +7,7 @@ import HomeScreen from '../HomeScreen'
 import UserProfile from '../UserProfile'
 import TabNavigation from './TabNavigation'
 import FavoritesScreen from '../Favorites'
+import FoodDetails from '../FoodDetails'
 const Stack=createNativeStackNavigator()
  
 const AuthNavigation = () => {
@@ -20,6 +21,7 @@ const AuthNavigation = () => {
             <Stack.Screen name='home' component={TabNavigation}  options={{headerShown:false}}/>
             <Stack.Screen name="userprofile" component={UserProfile} options={{headerShown:false}} />
             <Stack.Screen name='favorites' component={FavoritesScreen} options={{headerShown:false}} />
+            <Stack.Screen name='FoodDetails' component={FoodDetails} options={{headerShown:false}}/>
         </Stack.Navigator>
   )
 }
