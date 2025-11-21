@@ -1,42 +1,42 @@
-## **Project Idea** 
+## **Project Idea**
 
 **1. Project Title**
-*(DineSmart: Food  delivery App)*
+*(DineSmart: Meal Explorer App)*
 
 ---
-
 **2. Kirti Gautam - 2024-B-04082005**
 
 ---
-
 **3. Project Description**
-Ordering food from multiple restaurants can be time-consuming and inconvenient.
-DineSmart is a mobile application that allows users to browse restaurants, view their menus, filter foods by type, category, or meal type, and place orders digitally.
-The project aims to make food ordering seamless, efficient, and user-friendly.
+Discovering new meals and recipes can be overwhelming without a dedicated tool.
+DineSmart is a mobile application that allows users to browse a vast collection of meals from TheMealDB API, search for specific dishes, filter by categories, add meals to favorites, and view detailed information including ingredients and instructions.
+The project aims to make meal exploration fun, efficient, and user-friendly for food enthusiasts.
 
 ---
 
 **4. Proposed Solution / Idea**
-* Browse restaurants and their menus
-
-* Filter foods by type (Veg/Non-Veg), category, or meal type
-
-* Place food orders online
-
-* View restaurant ratings and reviews
+* Browse meals by categories 
+* Search meals by name
+* Filter and view meal details 
+* Add/remove meals from favorites (stored locally)
+* User authentication for personalized experience
 ---
 
 **5. Project Scope**
-* Restaurant & Food Management: CRUD operations for restaurants and menu items
-* User signup/login functionality
-* Intuitive UI/UX: Smooth scrolling, responsive layout, and modern mobile design
-* Booking History (users can view past and upcoming reservations)
+* Meal Browsing: Fetch and display meals from TheMealDB API
+* Search and Filter: Implement search by name and category filtering
+* Favorites Management: Add/remove favorites using AsyncStorage
+* User Authentication: Signup/login using Clerk
+* Meal Details: View comprehensive meal information
+* Intuitive UI/UX: Modern mobile design with responsive layout
+
 ---
 
 **6. Target Users / Audience**
-* casual diners and food enthusiasts
-* busy professionals
-* families and groups who want to make reservations in advance
+* Food enthusiasts and home cooks
+* People looking for recipe inspiration
+* Users interested in exploring global cuisines
+* Individuals planning meals or grocery shopping
 
 ---
 
@@ -44,39 +44,39 @@ The project aims to make food ordering seamless, efficient, and user-friendly.
 Frontend:
 
 * React Native (with Expo)
-* styling with css
-* Navigation: Expo Router
-* Form management for inputs and validations
+* Styling with StyleSheet
+* Navigation: React Navigation 
+* State Management: React Hooks
+* AsyncStorage for local data persistence
 
 Backend:
 
-* Node.js + Express.js
-
+* Node.js + Express.js 
 * Prisma ORM
-
 * MySQL database
 
 Additional Tools:
 
-* CORS, body-parser for API handling
-
-* ThunderClient for testing APIs
+* TheMealDB API for meal data
+* Expo CLI for development
+* VSCode for coding
 
 ---
 
 **8. Expected Outcome**
-* Improved user experience and convenience
-* Increased efficiency for restaurants and diners
-* Enhanced online presence for restaurants
+* Enhanced meal discovery experience
+* Convenient access to recipes and meal ideas
+* Improved user engagement with favorites and search features
+* Foundation for future expansions like user-generated content or social features
 
 ---
 
 **9. Timeline**
-* Week 1-2: Project setup, UI design, and basic navigation.
-* Week 3-4: Firebase integration and authentication system development.
-* Week 5-6: Core booking logic (restaurant listings, slot selection) and custom component implementation.
-* Week 7-8: Finalizing the booking flow, adding history/profile tabs, and styling with Tailwind CSS.
-* Week 9: Testing, debugging, and final deployment.
+* Week 1-2: Project setup, Expo init, basic navigation structure.
+* Week 3-4: Implement authentication with Clerk, setup screens.
+* Week 5-6: Integrate MealDB API, implement meal browsing and categories.
+* Week 7-8: Add search functionality, favorites management, meal details screen.
+* Week 9: UI polishing, testing, debugging, and final deployment.
 
 
 
