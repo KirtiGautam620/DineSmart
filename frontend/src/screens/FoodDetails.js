@@ -68,10 +68,12 @@ const styles = StyleSheet.create({
     fontWeight:'600',
   },
   description:{
-    fontSize:16,
-    color:'#555',
-    textAlign:'center',
-    lineHeight:22,
+    fontSize:18,
+    color:'#444',
+    fontStyle:'italic',
+    textAlign:'justify',
+    lineHeight:28,
+    marginHorizontal: 10,
   },
 });
 

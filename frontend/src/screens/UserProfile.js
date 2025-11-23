@@ -6,6 +6,8 @@ import { Avatar } from 'react-native-paper'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {wd,hd} from "../utils/responsive"
+import dummyAvatar from '../../assets/avt.jpeg'
+
 const UserProfile = ({navigation}) => {
     const [user,setUser]=useState(null)
     useEffect(()=>{
@@ -31,7 +33,7 @@ const UserProfile = ({navigation}) => {
         {
         user ? (
             <>
-            <Avatar.Image size={200} source={user.avatar}/>
+            <Avatar.Image size={200} source={user.avatar ? user.avatar : dummyAvatar}/>
             <Text style={styles.name}>Name: {user.name}</Text>
             <Text style={styles.email}>Email: {user.email}</Text>
             <TouchableOpacity onPress={handle} style={styles.lbtn}>
@@ -40,7 +42,7 @@ const UserProfile = ({navigation}) => {
             </>
         ):(
             <>
-            <Avatar.Image size={200} style={{backgroundColor:"#ffa07a"}}/>
+            <Avatar.Image size={200} source={dummyAvatar} />
             <Text style={styles.name}>No Profile Found.</Text>
             <Text> Please Log In</Text>
             <TouchableOpacity title="Logout" style={styles.lbtn}>

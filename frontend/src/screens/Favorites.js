@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { colors } from '../global/style';
 import { wd, hd } from '../utils/responsive';
 
@@ -23,8 +23,6 @@ const FavoritesScreen = ({ navigation }) => {
         setLoading(false);
       }
     };
-
-    // Load favorites when screen is focused
     const unsubscribe = navigation.addListener('focus', () => {
       loadFavorites();
     });
@@ -65,7 +63,7 @@ const FavoritesScreen = ({ navigation }) => {
           removeFavorite(item.id);
         }}
       >
-        <AntDesign name="heart" size={24} color="#ff0000" />
+        <FontAwesome name="heart" size={24} color="#ff0000" />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -89,7 +87,7 @@ const FavoritesScreen = ({ navigation }) => {
       </View>
       {favorites.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <AntDesign name="hearto" size={80} color={colors.text1} style={styles.emptyIcon} />
+          <FontAwesome name="heart-o" size={80} color={colors.text1} style={styles.emptyIcon} />
           <Text style={styles.emptyText}>No favorites yet</Text>
           <Text style={styles.emptySubtext}>Start adding meals to your favorites!</Text>
         </View>
