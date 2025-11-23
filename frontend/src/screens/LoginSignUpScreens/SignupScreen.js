@@ -9,146 +9,235 @@ import Entypo from '@expo/vector-icons/Entypo';
 import { Linking ,Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {hd,wd} from "../../utils/responsive"
-const  SignupScreen= ({navigation}) => {
-    const [emailfocus,setEmailfocus]=useState(false)
-    const [passwordfocus,setPasswordfocus]=useState(false)
-    const [showpassword,setShowpassword]=useState(false)
-    const [cpasswordfocus,setcPasswordfocus]=useState(false)
-    const [showcpassword,setShowcpassword]=useState(false)
-    const [namefocus,setNamefocus]=useState(false)
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+  return re.test(String(email).toLowerCase());
+};
 
-    
-    const handlegit=()=>{
-      Linking.openURL("https://catherina-pulmonary-cadence.ngrok-free.dev/auth/google/callback")
+const validatePassword = (password) => {
+  const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+  return re.test(password);
+};
+
+const SignupScreen = ({ navigation }) => {
+  const [emailfocus, setEmailfocus] = useState(false)
+  const [passwordfocus, setPasswordfocus] = useState(false)
+  const [showpassword, setShowpassword] = useState(false)
+  const [cpasswordfocus, setcPasswordfocus] = useState(false)
+  const [showcpassword, setShowcpassword] = useState(false)
+  const [namefocus, setNamefocus] = useState(false)
+  
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [address, setAddress] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handlegit = () => {
+    Linking.openURL("https://catherina-pulmonary-cadence.ngrok-free.dev/auth/google/callback")
+  }
+
+  useEffect(() => {
+    const handleLink = async () => {
+      const t = '123456'
+      await AsyncStorage.setItem('@user_token', t);
+      navigation.navigate("home")
     }
-    useEffect(()=>{
-      const handleLink=async ()=>{
-        // const url=event.url
-        // const t=url.split("token=")[1]
-        // if(t){
-        const t='123456'
-          await AsyncStorage.setItem('@user_token', t);
-          navigation.navigate("home")
-        // }
+    const subs = Linking.addEventListener("url", handleLink)
+    return () => {
+      subs.remove()
+    }
+  }, [])
+
+  const handleSignup = async () => {
+    if (!fullName||!email||!password||!confirmPassword||!address) {
+      Alert.alert('Error', 'Please fill all the fields.')
+      return
+    }
+    if (!validateEmail(email)) {
+      Alert.alert('Error', 'Please enter a valid email address.')
+      return
+    }
+    if (!validatePassword(password)) {
+      Alert.alert('Error', 'Password must be at least 6 characters long and contain at least one letter and one number.')
+      return
+    }
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.')
+      return
+    }
+    setLoading(true)
+    try {
+      const usersStr = await AsyncStorage.getItem('@users_list')
+      let users = usersStr ? JSON.parse(usersStr) : []
+      const exists = users.find(u => u.email.toLowerCase() === email.toLowerCase())
+      if (exists) {
+        setLoading(false)
+        Alert.alert('Error', 'Email is already in use.')
+        return
       }
-      const subs= Linking.addEventListener("url",handleLink)
-      return ()=>{
-        subs.remove()
+
+      const newUser = {
+        name: fullName,
+        email: email,
+        password: password,
+        address: address,
+        phone: null,
+        avatar: null
       }
-    },[])
+      users.push(newUser)
+      await AsyncStorage.setItem('@users_list', JSON.stringify(users))
+      await AsyncStorage.setItem('@user_token', 'dummy-auth-token')
+      await AsyncStorage.setItem('@user_profile', JSON.stringify({
+        name: fullName,
+        email: email,
+        address: address,
+        phone: null,
+        avatar: null
+      }))
+
+      setLoading(false)
+      Alert.alert('Success', 'Signed up successfully.')
+      navigation.replace('home')
+    } catch (error) {
+      setLoading(false)
+      Alert.alert('Error', 'Failed to sign up. Please try again.')
+    }
+  }
+
   return (
-    
-    <View style={styles.container}> 
-    <ScrollView contentContainerStyle={styles.scroll} showsHorizontalScrollIndicator={false}>
-      <Text style={styles.head1}>Sign Up </Text> 
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scroll} showsHorizontalScrollIndicator={false}>
+        <Text style={styles.head1}>Sign Up </Text>
 
-      <View style={styles.inputout}>
-        <FontAwesome6 name="user-large" size={24} 
-        color={namefocus?colors.col3:colors.col2}/> 
-        <TextInput 
-        style={styles.input} 
-        placeholder='Full Name'
-        onFocus={()=>{
-            setEmailfocus(false)
-            setPasswordfocus(false)
-            setNamefocus(true) 
-            setcPasswordfocus(false)
-        }}
-        /> 
-      </View>
+        <View style={styles.inputout}>
+          <FontAwesome6 name="user-large" size={24}
+            color={namefocus ? colors.col3 : colors.col2} />
+          <TextInput
+            style={styles.input}
+            placeholder='Full Name'
+            value={fullName}
+            onChangeText={setFullName}
+            onFocus={() => {
+              setEmailfocus(false)
+              setPasswordfocus(false)
+              setNamefocus(true)
+              setcPasswordfocus(false)
+            }}
+          />
+        </View>
 
-      <View style={styles.inputout}>
-        <Entypo name="email" size={24} color={emailfocus?colors.col3:colors.col2} />
-        <TextInput 
-        style={styles.input} 
-        placeholder='Email'
-        onFocus={()=>{
-            setEmailfocus(true)
-            setPasswordfocus(false)
-            setNamefocus(false)
-            setShowpassword(false)
-            setcPasswordfocus(false)
-        }}
-        /> 
-      </View>
+        <View style={styles.inputout}>
+          <Entypo name="email" size={24} color={emailfocus ? colors.col3 : colors.col2} />
+          <TextInput
+            style={styles.input}
+            placeholder='Email'
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            onFocus={() => {
+              setEmailfocus(true)
+              setPasswordfocus(false)
+              setNamefocus(false)
+              setShowpassword(false)
+              setcPasswordfocus(false)
+            }}
+          />
+        </View>
 
-      <View style={styles.inputout}>
-      <Foundation name="lock" size={24} 
-      color={passwordfocus?colors.col3:colors.col2} />
-        <TextInput 
-        style={styles.input} 
-        placeholder='Password'
-        onFocus={()=>{
-            setPasswordfocus(true)
-            setEmailfocus(false)
-            setShowpassword(false)
-            setNamefocus(false)
-            setcPasswordfocus(false)
-        }}
-        secureTextEntry={showpassword===false?true:false}
-        />
-        <MaterialCommunityIcons 
-        name={showpassword===false? "eye-off" :"eye"}
-        size={24} 
-        color="black" 
-        onPress={()=>setShowpassword(!showpassword)}
-        />
-      </View>
+        <View style={styles.inputout}>
+          <Foundation name="lock" size={24}
+            color={passwordfocus ? colors.col3 : colors.col2} />
+          <TextInput
+            style={styles.input}
+            placeholder='Password'
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showpassword}
+            onFocus={() => {
+              setPasswordfocus(true)
+              setEmailfocus(false)
+              setShowpassword(false)
+              setNamefocus(false)
+              setcPasswordfocus(false)
+            }}
+          />
+          <MaterialCommunityIcons
+            name={showpassword ? "eye" : "eye-off"}
+            size={24}
+            color="black"
+            onPress={() => setShowpassword(!showpassword)}
+          />
+        </View>
 
-      <View style={styles.inputout}>
-      <Foundation name="lock" size={24} 
-      color={cpasswordfocus?colors.col3:colors.col2} />
-        <TextInput 
-        style={styles.input} 
-        placeholder='Confirm Password'
-        onFocus={()=>{
-            setcPasswordfocus(true)
-            setEmailfocus(false)
-            setPasswordfocus  (false)
-            setNamefocus(false)
-        }}
-        secureTextEntry={showcpassword===false?true:false}
-        />
-        <MaterialCommunityIcons 
-        name={showcpassword===false? "eye-off" :"eye"}
-        size={24} 
-        color="black"  
-        onPress={()=>setShowcpassword(!showcpassword)}
-        />
-      </View>
+        <View style={styles.inputout}>
+          <Foundation name="lock" size={24}
+            color={cpasswordfocus ? colors.col3 : colors.col2} />
+          <TextInput
+            style={styles.input}
+            placeholder='Confirm Password'
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry={!showcpassword}
+            onFocus={() => {
+              setcPasswordfocus(true)
+              setEmailfocus(false)
+              setPasswordfocus(false)
+              setNamefocus(false)
+            }}
+          />
+          <MaterialCommunityIcons
+            name={showcpassword ? "eye" : "eye-off"}
+            size={24}
+            color="black"
+            onPress={() => setShowcpassword(!showcpassword)}
+          />
+        </View>
 
         <Text style={styles.address}>Please enter your address</Text>
         <View style={styles.inputout}>
-          <TextInput style={styles.input1} placeholder='Enter Your Address' />
+          <TextInput
+            style={styles.input1}
+            placeholder='Enter Your Address'
+            value={address}
+            onChangeText={setAddress}
+          />
         </View>
 
-      <TouchableOpacity style={btn1}>
-        <Text style={{color:colors.col1,fontSize:titles.btntxt,fontWeight:'bold'}}>Sign Up </Text>
-      </TouchableOpacity>
-
-      {/* <Text style={styles.forgot}>Forgot Password?    </Text>      */}
-      <Text style={styles.or} >OR</Text>
-      <Text style={styles.txt}>Sign In With</Text>
-
-      <View style={styles.gi}>
-        <TouchableOpacity onPress={handlegit}>
-             <View style={styles.gicon}>
-             <AntDesign name="google" size={26} color="#4285F4" />
-             </View>
+        <TouchableOpacity
+          style={btn1}
+          onPress={handleSignup}
+          disabled={loading}
+        >
+          <Text style={{ color: colors.col1, fontSize: titles.btntxt, fontWeight: 'bold' }}>
+            {loading ? 'Signing Up...' : 'Sign Up'}
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-             <View style={styles.gicon}>
-             <Entypo name="instagram" size={26} color="#E1306C"/>
-             </View>
-        </TouchableOpacity>
-      </View>
-      <View style={{hr80,marginTop:hd(1)}}></View>
-      <Text>Already have an account?
-        <Text style={styles.signup} onPress={()=>navigation.navigate('login')}>  Sign In</Text>
-      </Text>
+
+        <Text style={styles.or} >OR</Text>
+        <Text style={styles.txt}>Sign In With</Text>
+
+        <View style={styles.gi}>
+          <TouchableOpacity onPress={handlegit}>
+            <View style={styles.gicon}>
+              <AntDesign name="google" size={26} color="#4285F4" />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.gicon}>
+              <Entypo name="instagram" size={26} color="#E1306C" />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ ...hr80, marginTop: hd(1) }}></View>
+        <Text>Already have an account?
+          <Text style={styles.signup} onPress={() => navigation.navigate('login')}>  Sign In</Text>
+        </Text>
       </ScrollView>
     </View>
-   
+
   )
 }
  

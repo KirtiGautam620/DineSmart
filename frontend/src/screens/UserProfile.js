@@ -8,20 +8,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {wd,hd} from "../utils/responsive"
 const UserProfile = ({navigation}) => {
     const [user,setUser]=useState(null)
-
-    useEffect(()=>{
-        const Dummy=async ()=>{
-            const DummyUser={
-                name:"Kirti Gautam",
-                email:"kirti@abcddd.com",
-                phone:"+917657543432",
-                avatar:require("../../assets/avt.jpeg")
-            }
-            await AsyncStorage.setItem('@user_profile',JSON.stringify(DummyUser))
-        }
-        Dummy()
-    },[])
-   
     useEffect(()=>{
         const fetchProfile= async ()=>{
             const val=await AsyncStorage.getItem('@user_profile')
@@ -48,7 +34,6 @@ const UserProfile = ({navigation}) => {
             <Avatar.Image size={200} source={user.avatar}/>
             <Text style={styles.name}>Name: {user.name}</Text>
             <Text style={styles.email}>Email: {user.email}</Text>
-            <Text style={styles.phone}>Phone: {user.phone}</Text>
             <TouchableOpacity onPress={handle} style={styles.lbtn}>
                 <Text style={styles.btntxt}>Log Out</Text>
             </TouchableOpacity>
