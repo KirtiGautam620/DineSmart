@@ -10,7 +10,6 @@ import TabNavigation from './TabNavigation'
 import FavoritesScreen from '../Favorites'
 import FoodDetails from '../FoodDetails'
 const Stack=createNativeStackNavigator()
- 
 const AuthNavigation = () => {
   return (
         <Stack.Navigator initialRouteName='splash'>
