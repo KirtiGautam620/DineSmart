@@ -1,13 +1,11 @@
 # DineSmart
 
-DineSmart is a modern food delivery application built with React Native (Expo) for the frontend and Node.js with Prisma for the backend. It allows users to browse restaurants, view menus, place orders, and manage their favorites seamlessly.
+DineSmart is a modern food recipe application built with React Native (Expo) for the frontend and Node.js with Prisma for the backend. 
 
 ## Features
 
 - **User Authentication**: Secure login and signup using Clerk Expo.
-- **Restaurant Browsing**: Explore a variety of restaurants and their offerings.
 - **Menu Management**: View detailed food items with images and descriptions.
-- **Order Placement**: Easy ordering process with cart functionality.
 - **Favorites**: Save favorite restaurants and dishes for quick access.
 - **Responsive Design**: Optimized for mobile devices with a clean, intuitive UI.
 - **Backend API**: Robust backend with Prisma ORM for database management and cron jobs for automated tasks.
@@ -18,7 +16,6 @@ DineSmart is a modern food delivery application built with React Native (Expo) f
 - React Native
 - Expo
 - React Navigation
-- Clerk Expo (Authentication)
 - React Native Paper (UI Components)
 - React Native Vector Icons
 
