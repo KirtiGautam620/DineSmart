@@ -15,7 +15,7 @@ const WelcomeScreen = ({navigation }) => {
         </View>
 
         <View style={hr80} />
-        <Text style={styles.text}>Find the best Food around you at lowest price.</Text>
+        <Text style={styles.text}>Smart Picks for Hungry Minds.</Text>
         <View  style={hr80} />
         <View style={styles.btnout}>
             <TouchableOpacity onPress={()=>navigation.navigate('signup')} >
