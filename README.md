@@ -30,7 +30,7 @@ DineSmart is a modern food recipe application built with React Native (Expo) for
 ## Demo Video
 
 Check out the demo video to see DineSmart in action:  
-[Demo Video](https://drive.google.com/file/d/1oU9PFhFYzsXnR7VvORlI2g5Xjw-HeJgV/view?usp=sharing)
+[Demo Video](https://drive.google.com/file/d/1q8nryA_rBeJDXrrN7ZySy5AfPfplXL3H/view?usp=sharing)
 
 ## Getting Started
 
